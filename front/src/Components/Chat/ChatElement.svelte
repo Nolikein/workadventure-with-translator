@@ -32,7 +32,6 @@
     }
 
     function showNoTranslatedMessage(message: string): string {
-        console.log(translationEnabled)
         return urlifyText(message);
     }
 
@@ -42,8 +41,6 @@
         if (maybeUrlyfied != message) {
             return maybeUrlyfied;
         }
-
-        console.log(localUserStore.getLanguage().substring(0, 2))
 
         return await translate(message, localUserStore.getLanguage().substring(0, 2));
     }
