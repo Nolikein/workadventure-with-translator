@@ -17,9 +17,10 @@
         chatInputFocusStore.set(false);
     }
 
-    function saveMessage() {
+    async function saveMessage() {
         if (!newMessageText) return;
         chatMessagesStore.addPersonnalMessage(newMessageText);
+
         newMessageText = "";
     }
 </script>
@@ -33,8 +34,8 @@
         on:blur={onBlur}
         bind:this={inputElement}
     />
-    <button type="submit">
-        <img src="/static/images/send.png" alt="Send" width="20" />
+    <button type="submit" style="background-color: #FFF">
+        <img src="/static/images/send_msg.png" alt="Send" width="20" />
     </button>
 </form>
 
@@ -45,16 +46,19 @@
         padding-right: 4px;
         width: 100%;
 
+        ::placeholder {
+            color: #18314b;
+        }
         input {
             flex: auto;
-            background-color: #254560;
-            color: white;
+            background-color: #FFF;
+            color: #18314b;
             border-bottom-left-radius: 4px;
             border-top-left-radius: 4px;
             border: none;
-            font-size: 22px;
+            font-size: 1rem;
             font-family: Lato;
-            padding-left: 6px;
+            padding: 0.5rem 0.5rem .5rem .5rem;
             min-width: 0; //Needed so that the input doesn't overflow the container in firefox
             outline: none;
         }
