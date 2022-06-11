@@ -78,7 +78,7 @@
 </script>
 
 <div class="btn-cam-action">
-    <div class="btn-layout" on:click={switchLayoutMode} class:hide={$peerStore.size === 0}>
+    <div class="btn-layout" on:click={switchLayoutMode} class:hide={$peerStore.size === 0} data-title="layout">
         {#if $embedScreenLayoutStore === LayoutMode.Presentation}
             <img class="noselect" src={layoutPresentationImg} style="padding: 2px" alt="Switch to mosaic mode" />
         {:else}
@@ -92,6 +92,7 @@
         class:disabled={$followStateStore !== "off"}
         on:click={() => analyticsClient.follow()}
         on:click={followClick}
+        data-title="Suivre"
     >
         <img class="noselect" src={followImg} alt="" />
     </div>
@@ -102,6 +103,7 @@
         class:disabled={$currentPlayerGroupLockStateStore}
         on:click={() => analyticsClient.lockDiscussion()}
         on:click={lockClick}
+        data-title="Verrouiller"
     >
         <img class="noselect" src={lockImg} alt="" />
     </div>
@@ -112,6 +114,7 @@
         on:click={screenSharingClick}
         class:hide={!$screenSharingAvailableStore || $silentStore}
         class:enabled={$requestedScreenSharingState}
+        data-title="Partage ton ecran"
     >
         {#if $requestedScreenSharingState && !$silentStore}
             <img class="noselect" src={monitorImg} alt="Start screen sharing" />
@@ -125,6 +128,7 @@
         on:click={() => analyticsClient.camera()}
         on:click={cameraClick}
         class:disabled={!$requestedCameraState || $silentStore}
+        data-title="Camera"
     >
         {#if $requestedCameraState && !$silentStore}
             <img class="noselect" src={cinemaImg} alt="Turn on webcam" />
@@ -138,6 +142,7 @@
         on:click={() => analyticsClient.microphone()}
         on:click={microphoneClick}
         class:disabled={!$requestedMicrophoneState || $silentStore}
+        data-title="Audio"
     >
         {#if $requestedMicrophoneState && !$silentStore}
             <img class="noselect" src={microphoneImg} alt="Turn on microphone" />
@@ -149,6 +154,30 @@
 
 <style lang="scss">
     @import "../../style/breakpoints.scss";
+
+    div[data-title] {
+        position: relative;
+        transition: opacity 1s;
+    }
+
+    div[data-title]::after {
+        content: attr(data-title);
+        position: absolute;
+        left: 90%;
+        top: 20%;
+        transform: translate(-50%,-150%);
+        background: #e5e7eb;
+        color: #18314b;
+        border-radius: 0.4rem;
+        padding: .115rem .875rem;
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+
+    div[data-title]:hover::after {
+        opacity: 1;
+    }
 
     .btn-cam-action {
         pointer-events: all;
