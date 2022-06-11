@@ -8,6 +8,8 @@
     import { selectCharacterSceneVisibleStore } from "../Stores/SelectCharacterStore";
     import { selectCompanionSceneVisibleStore } from "../Stores/SelectCompanionStore";
     import Chat from "./Chat/Chat.svelte";
+    import ClosedChat from "./Chat/ClosedChat.svelte";
+
     import EnableCameraScene from "./EnableCamera/EnableCameraScene.svelte";
     import LoginScene from "./Login/LoginScene.svelte";
     import MainLayout from "./MainLayout.svelte";
@@ -48,5 +50,7 @@
 
     {#if $chatVisibilityStore}
         <Chat />
+    {:else}
+        <ClosedChat />
     {/if}
 {/if}

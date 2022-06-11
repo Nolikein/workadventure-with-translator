@@ -55,7 +55,7 @@
 
 <svelte:window on:keydown={onKeyDown} on:click={onClick} />
 
-<aside class="chatWindow" transition:fly={{ x: -1000, duration: 500 }} bind:this={chatWindowElement}>
+<aside class="chatWindow" transition:fly={{ y: 1000, duration: 500 }} bind:this={chatWindowElement}>
     <img class="traductor" src="resources/chat/traductor.png" alt="Traductor icon" />
     <p class="close-icon noselect" on:click={closeChat}>&times</p>
     <section class="messagesList" bind:this={listDom}>
@@ -68,7 +68,7 @@
     </section>
     <section class="messageForm">
         <div class="transletSwitch" on:click={toggleSwitch}>
-            <img src="resources/chat/translation-logo.png" alt="Translation logo" class="translation-logo"/>
+            <img src="resources/chat/translation-logo.png" alt="Translation logo" class="translation-logo" />
             <label class="switch">
                 <input type="checkbox" bind:checked={translationEnabled} on:input={toggleSwitch} />
                 <span class="slider round" />
