@@ -6,6 +6,7 @@
     import type { PlayerInterface } from "../../Phaser/Game/PlayerInterface";
     import { TranslationCache, makeHash, hashExists, addHash, getContentFromHash } from "../../Cache/TranslationCache";
     import LL from "../../i18n/i18n-svelte";
+    import { localUserStore } from "../../Connexion/LocalUserStore";
 
     export let message: ChatMessage;
     export let line: number;
@@ -41,8 +42,10 @@
         if (maybeUrlyfied != message) {
             return maybeUrlyfied;
         }
-        // Is not a url. Translate it
-        return await translate(message);
+
+        console.log(localUserStore.getLanguage().substring(0, 2))
+
+        return await translate(message, localUserStore.getLanguage().substring(0, 2));
     }
 
     function makeRequest(

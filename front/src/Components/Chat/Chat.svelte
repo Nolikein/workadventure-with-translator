@@ -12,7 +12,6 @@
     let chatWindowElement: HTMLElement;
     let handleFormBlur: { blur(): void };
     let autoscroll: boolean;
-    let switchValue = true;
     let translationEnabled = localUserStore.hasEnabledTranslation();
 
     beforeUpdate(() => {
